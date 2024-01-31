@@ -1,6 +1,7 @@
 /*
 Nom du projet : Arbre de compression de Huffman
 Auteurs : 
+
 - Victorio NASCIMENTO
 - Alex AKLE
 
