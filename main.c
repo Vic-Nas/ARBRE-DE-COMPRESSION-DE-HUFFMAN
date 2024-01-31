@@ -241,8 +241,7 @@ void stockage_tableau(tree *stocke, noeud *arbre, int taille_arbre, save *S, int
 
 void decodage_chaine_codee(tree arbre_stocke, char *chaine_decodee, int *taille_chaine_decodee, int *chaine_binarisee)
 {
-    int taille_arbre = 0;
-    for(int i = 0; i < arbre_stocke.taille_binaire)
+
 }
 
 int main()
