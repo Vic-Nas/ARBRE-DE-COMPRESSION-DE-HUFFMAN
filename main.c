@@ -1,3 +1,14 @@
+/*
+Nom du projet : Arbre de compression de Huffman
+Auteurs : 
+- Victorio NASCIMENTO
+- Alex AKLE
+
+Projet terminé le 31/01/2023
+Problèmes : Fonction décodage de la chaîne encodée
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
