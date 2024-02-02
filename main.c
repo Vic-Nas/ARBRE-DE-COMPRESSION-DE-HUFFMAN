@@ -1,15 +1,3 @@
-/*
-Nom du projet : Arbre de compression de Huffman
-Auteurs : 
-
-- Victorio NASCIMENTO
-- Alex AKLE
-
-Projet terminé le 31/01/2023
-Problèmes : Fonction décodage de la chaîne encodée
-*/
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -148,6 +136,11 @@ void binarisation(noeud *arbre, save *S, int taille_arbre)
 void tri_ordre_arbre(save *S, char *tab, int taille_S)
 {
 
+    int max_tailles_binaires = S[0].taille_binaire;
+    for(int i = 0; i < taille_S; i ++)
+    {
+        if(S[i].taille_binaire > max_tailles_binaires) max_tailles_binaires = S[i].taille_binaire;
+    }
     //Rangement des valeurs decimales pour la comparaison
     int puissance = 0;
     for(int i = 0; i < taille_S; i ++)
@@ -156,18 +149,18 @@ void tri_ordre_arbre(save *S, char *tab, int taille_S)
     }
     for(int i = 0; i < taille_S; i ++)
     {
-        puissance = 0;
-        for(int j = 0; j < S[i].taille_binaire; j ++)
+        puissance = max_tailles_binaires;
+        for(int j = S[i].taille_binaire - 1; j >= 0; j --)
         {
             S[i].decimal += S[i].binaire[j] * pow(2, puissance);
-            puissance ++;
+            puissance --;
         }
     }
 
     //Tri en fonction des decimaux en recyclant le code du tri_frequence_croissantes
     for (int i = 0; i < taille_S - 1; i++)
     {
-        puissance = 0;
+        int c = 0;
         for (int j = 0; j < taille_S - i - 1; j++)
         {
             if (S[j].decimal > S[j + 1].decimal)
@@ -175,15 +168,15 @@ void tri_ordre_arbre(save *S, char *tab, int taille_S)
                 save temp = S[j];
                 S[j] = S[j + 1];
                 S[j + 1] = temp;
-                puissance = 1;
+                c = 1;
             }
         }
 
-        if (puissance == 0)
+        if (c == 0)
             break;
     }
 
-
+    for (int i = 0; i < taille_S; i++) printf(" %c : %d ", S[i].valeur, S[i].decimal);
 }
 
 
@@ -204,6 +197,15 @@ short index_difference(save S1, save S2)
     return index_2 ;
 }
 
+
+void init(noeud *N)
+{
+    N ->fils_gauche.valeur = N -> fils_gauche.valeur_calculs = 'K';
+    N -> fils_droit.valeur = N -> fils_droit.valeur_calculs = 'K';
+    N -> pere.valeur = '$';
+    N -> pere.valeur_calculs = 'K';
+    N -> fils_gauche.frequence = N -> fils_droit.frequence = N -> pere.frequence = 0;
+}
 
 void stockage_tableau(tree *stocke, noeud *arbre, int taille_arbre, save *S, int taille_S)
 {
@@ -230,6 +232,7 @@ void stockage_tableau(tree *stocke, noeud *arbre, int taille_arbre, save *S, int
         for(int j = k; j >= 0; j--)
         {
               stocke -> binaire[index] = S[i].binaire[j];
+              printf("\n%c : %d.\nk : %d.\n",S[i].valeur_calculs, S[i].binaire[j], k);
               index ++;
         }
         k = index_difference(S[i], S[i + 1]);
@@ -241,7 +244,48 @@ void stockage_tableau(tree *stocke, noeud *arbre, int taille_arbre, save *S, int
 
 void decodage_chaine_codee(tree arbre_stocke, char *chaine_decodee, int *taille_chaine_decodee, int *chaine_binarisee)
 {
+    //Determination de la taille de l'arbre i.e le nombre de 1 dans le code de l'arbre - 1
+    int taille_arbre = -1;
+    for(int i = 0; i < arbre_stocke.taille_binaire; i ++)
+    {
+        if(arbre_stocke.binaire[i] == 1) taille_arbre ++;
+    }
 
+
+    //Initialisaion de l'arbre
+    noeud arbre[taille_arbre];
+    for(int i = 0; i < taille_arbre; i ++) init(&arbre[i]);
+
+
+    //Placement des caracteres dans l'arbre
+    int index = 0, k = taille_arbre - 1;
+    for(int i = 0; i < arbre_stocke.taille_binaire - 2; i ++)
+    {
+        if(arbre_stocke.binaire[i] == 0 && arbre_stocke.binaire[i + 1] == 1)
+        {
+            if(arbre_stocke.binaire[i + 2] == 0)
+            {
+                printf("\nTonton");
+                arbre[k].fils_gauche.valeur = arbre[k].fils_gauche.valeur_calculs = arbre_stocke.valeurs[index];
+                index ++;
+                k --;
+            }
+            else
+            {
+                printf("Tata");
+                arbre[k].fils_gauche.valeur = arbre[k].fils_gauche.valeur_calculs = arbre_stocke.valeurs[index];
+                printf(" %c ", arbre_stocke.valeurs[index]);
+                index ++;
+                arbre[k].fils_droit.valeur = arbre[k].fils_droit.valeur_calculs = arbre_stocke.valeurs[index];
+                index ++;
+                k -= 2;
+            }
+        }
+
+    }
+
+    index = 0;
+    for(int i = taille_arbre - 1; i >= 0; i --) afficher_Noeud(arbre[i]);
 }
 
 int main()
