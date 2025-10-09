@@ -364,11 +364,11 @@ int main()
     printf("\n");
 
     //Décodage de l'arbre
-    char chaine_decodee[100];
-    int taille_chaine_decodee = 0;
-    decodage_chaine_codee(arbre_stocke, chaine_decodee, &taille_chaine_decodee, chaine_decodee);
-    printf("\nChaine decodee : ");
-    for(int i = 0; i < taille_chaine_decodee; i++) printf("%c", chaine_decodee[i]);
-    printf("\nFin du projet Huffman tree.\n");
+    // char chaine_decodee[100];
+    // int taille_chaine_decodee = 0;
+    // decodage_chaine_codee(arbre_stocke, chaine_decodee, &taille_chaine_decodee, chaine_decodee);
+    // printf("\nChaine decodee : ");
+    // for(int i = 0; i < taille_chaine_decodee; i++) printf("%c", chaine_decodee[i]);
+    // printf("\nFin du projet Huffman tree.\n");
 
 }
