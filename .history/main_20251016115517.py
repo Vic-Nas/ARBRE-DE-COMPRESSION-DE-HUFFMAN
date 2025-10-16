@@ -1,4 +1,0 @@
-
-
-def huffman(s):
-    pass
