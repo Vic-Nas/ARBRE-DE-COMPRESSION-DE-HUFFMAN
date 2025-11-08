@@ -1,25 +1,9 @@
-## Installation
+## Use vicutils
 
-1. Clone the repository:
 
 ```bash
-git clone https://github.com/Vic-Nas/PythonSolutions.git
-cd PythonSolutions
+pip install vicutils
 ````
-
-2. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Usage
-
-Run the main script:
-
-```bash
-python main.py
-```
 
 ## Requirements
 
