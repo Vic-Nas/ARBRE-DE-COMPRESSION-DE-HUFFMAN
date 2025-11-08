@@ -1,6 +1,5 @@
 from functools import total_ordering
-from collections import Counter as frequencies
-from printBin import Node, nodeToString
+from vicutils.printBin import Node, nodeToString
 
 DEFAULT = "$"
 

@@ -1,4 +1,5 @@
-from utils import *
+from utils import FrequencyNode, appendWithOrder
+from collections import Counter as frequencies
 
 
 def huffman(s: str):
