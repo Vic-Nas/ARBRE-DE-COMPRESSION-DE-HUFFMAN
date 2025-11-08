@@ -1,13 +1,14 @@
 # Test
 
+## Clone repo or Download:
+    * main.py
+    * utils.py
+    * requirements.txt
+
 ```bash
+pip install -r requirements.txt
 python main.py
 ````
-
-## Requirements
-
-* Python 3.x
-* Any libraries listed in `requirements.txt`
 
 ## License
 
