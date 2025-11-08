@@ -1,0 +1,1 @@
+git+https://github.com/Vic-Nas/PythonSolutions.git#egg=vicutils
