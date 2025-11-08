@@ -1,5 +1,5 @@
 from functools import total_ordering
-from vicutils.printBin import Node, nodeToString
+from vicutils.printBin import BinaryNode, nodeToString
 
 DEFAULT = "$"
 
@@ -67,7 +67,7 @@ class FrequencyNode:
             return None
         leftNode = self.left.toPrintNode() if self.left else None
         rightNode = self.right.toPrintNode() if self.right else None
-        return Node(val=f"({self.symb}, {self.val})", left=leftNode, right=rightNode)
+        return BinaryNode(val=f"({self.symb}, {self.val})", left=leftNode, right=rightNode)
 
 
 def appendWithOrder(sortedList: list, el):

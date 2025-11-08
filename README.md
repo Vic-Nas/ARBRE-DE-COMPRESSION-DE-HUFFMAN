@@ -1,8 +1,7 @@
-## Use vicutils
-
+# Test
 
 ```bash
-pip install vicutils
+python main.py
 ````
 
 ## Requirements
